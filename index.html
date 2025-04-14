@@ -294,7 +294,7 @@
                     <div class="flex justify-center space-x-6">
                         <a href="https://www.linkedin.com/in/connectmanohar/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-accent1 text-2xl">
                             <i class="fab fa-linkedin"></i> </a>
-                        <a href="mailto:pgp09manoharg@iimrohtak.ac.in" class="text-secondary hover:text-accent1 text-2xl"> <i class="fas fa-envelope"></i> </a>
+                        <a href="mailto:YOUR_EMAIL_HERE@example.com" class="text-secondary hover:text-accent1 text-2xl"> <i class="fas fa-envelope"></i> </a>
                         </div>
                 </div>
             </div>
@@ -328,6 +328,35 @@
 
         // Set Current Year in Footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Contact Form Mailto Logic
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // --- IMPORTANT: Replace with your actual email address ---
+            const recipientEmail = 'YOUR_EMAIL_HERE@example.com';
+            // --- IMPORTANT: Replace with your actual email address ---
+
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Construct the subject
+            const subject = `Contact Form Submission from ${name}`;
+
+            // Construct the body
+            const body = `You received a new message from your portfolio contact form:\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+            // Construct the mailto link
+            // Use encodeURIComponent to handle special characters in subject and body
+            const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            // Open the user's default email client
+            window.location.href = mailtoLink;
+        });
+
     </script>
 
 </body>
