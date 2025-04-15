@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manohar - Renewable Energy Professional</title>
     <meta name="description" content="Personal portfolio website for Manohar, a Renewable Energy Professional specializing in Solar PV design, simulation, and project management.">
+
+    <link rel="icon" href="https://media.licdn.com/dms/image/v2/D4D03AQE6Aw7EImRp2Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1669453380156?e=1750291200&v=beta&t=8W7ofn2apyNzPcyu4M0Us6iB1Xmy-pfxL239wUa3F0g">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script>
         // Tailwind Custom Configuration for a Lively Theme
         tailwind.config = {
@@ -45,7 +50,8 @@
             background: #64748b; /* Darker gray thumb on hover */
         }
         /* Add subtle transition for hover effects */
-        button, a {
+        /* Applied transition-all to project cards directly now */
+        button, a:not(.project-card a) { /* Exclude links within project card if needed */
             transition: all 0.3s ease;
         }
         /* Ensure sufficient contrast and readability */
@@ -53,6 +59,8 @@
              /* Smoother font rendering */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+             /* Prevent horizontal scrollbar caused by AOS */
+            overflow-x: hidden;
         }
          /* Style for blockquote */
         blockquote {
@@ -62,6 +70,15 @@
             font-style: italic;
             color: #4b5563; /* secondary color */
         }
+        /* Ensure AOS animations don't cause layout shifts initially */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+        }
+        html.aos-animate [data-aos] {
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body class="bg-base text-primary font-sans antialiased">
@@ -69,7 +86,8 @@
     <header class="bg-base shadow-md sticky top-0 z-50 px-4 md:px-8 py-3 border-b border-border-light">
         <div class="container mx-auto flex justify-between items-center">
             <div class="text-primary text-xl md:text-2xl font-bold">
-                <a href="#home" class="hover:text-accent1">Manohar Gupta</a> </div>
+                <a href="#home" class="hover:text-accent1">Manohar Gupta</a>
+            </div>
 
             <nav class="hidden md:flex space-x-6">
                 <a href="#home" class="text-secondary hover:text-accent1">Home</a>
@@ -130,7 +148,7 @@
             </div>
         </section>
 
-        <section id="about" class="mb-20 md:mb-32 scroll-mt-16">
+        <section id="about" class="mb-20 md:mb-32 scroll-mt-16" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8 text-center md:text-left">About Me</h2>
             <div class="bg-card p-6 md:p-8 rounded-lg shadow-lg space-y-5 text-secondary border border-border-light">
 
@@ -162,10 +180,10 @@
             </div>
         </section>
 
-        <section id="experience" class="mb-20 md:mb-32 scroll-mt-16">
+        <section id="experience" class="mb-20 md:mb-32 scroll-mt-16" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8 text-center md:text-left">Experience</h2>
             <div class="space-y-8">
-                 <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light">
+                 <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-xl font-semibold text-primary">Manager</h3>
                     <p class="text-md font-medium text-secondary">ReNew</p>
                     <p class="text-sm text-gray-500 mb-3">Aug 2023 – Present · (1 yr 9 mos) | Gurugram, Haryana, India</p>
@@ -174,10 +192,11 @@
                         <li>Conduct due diligence and risk assessment for potential investments and financing deals.</li>
                         <li>Collaborate with internal teams and external stakeholders (lenders, investors) to structure financing.</li>
                         <li>Prepare investment memorandums and presentations for senior management and investment committees.</li>
+                        <li>[Add another specific, quantifiable achievement or responsibility related to project finance/management at ReNew]</li>
                     </ul>
                 </div>
 
-                <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light">
+                <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="150">
                     <h3 class="text-xl font-semibold text-primary">Associate</h3>
                     <p class="text-md font-medium text-secondary">PwC</p>
                     <p class="text-sm text-gray-500 mb-3">Dec 2021 – Jul 2023 · (1 yr 8 mos) | Gurugram, Haryana, India</p>
@@ -186,10 +205,11 @@
                         <li>Developed financial models and performed data analysis to support client engagements and recommendations.</li>
                         <li>Engaged with stakeholders across various levels to gather requirements and present findings.</li>
                         <li>Contributed to business solution design and process improvement initiatives for clients.</li>
+                        <li>[Add another specific, quantifiable achievement or responsibility, e.g., related to a specific project or client impact]</li>
                     </ul>
                 </div>
 
-                 <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light">
+                 <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="200">
                     <h3 class="text-xl font-semibold text-primary">Senior Finance Analyst</h3>
                     <p class="text-md font-medium text-secondary">Thomson Reuters</p>
                     <p class="text-sm text-gray-500 mb-3">Nov 2020 – Dec 2021 · (1 yr 2 mos) | Hyderabad, Telangana, India</p>
@@ -198,10 +218,11 @@
                         <li>Utilized SQL and other tools for data extraction, manipulation, and analysis to generate insights.</li>
                         <li>Developed and maintained Management Information Systems (MIS) reports and dashboards.</li>
                         <li>Collaborated with business units to understand requirements and provide financial planning support.</li>
+                        <li>[Add another specific, quantifiable achievement or responsibility, e.g., related to process automation or cost savings]</li>
                     </ul>
                 </div>
 
-                <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light">
+                <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="250">
                     <h3 class="text-xl font-semibold text-primary">Summer Intern</h3>
                     <p class="text-md font-medium text-secondary">Reserve Bank of India (RBI)</p>
                     <p class="text-sm text-gray-500 mb-3">Apr 2019 – May 2019 · (2 mos) | New Delhi Area, India</p>
@@ -213,7 +234,7 @@
                     </ul>
                 </div>
 
-                 <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light">
+                 <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="300">
                     <h3 class="text-xl font-semibold text-primary">Marketing and Design Intern</h3>
                     <p class="text-md font-medium text-secondary">Soulflower Co Ltd</p>
                     <p class="text-sm text-gray-500 mb-3">May 2013 – Jul 2013 · (3 mos) | Mumbai Area, India</p>
@@ -224,7 +245,7 @@
                     </ul>
                 </div>
 
-                 <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light">
+                 <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="350">
                     <h3 class="text-xl font-semibold text-primary">Member</h3>
                     <p class="text-md font-medium text-secondary">Strategy and Consulting Club, IIM Rohtak</p>
                     <p class="text-sm text-gray-500 mb-3">Jul 2018 – Feb 2020 · (1 yr 8 mos) | Rohtak Area, India</p>
@@ -237,10 +258,10 @@
             </div>
         </section>
 
-        <section id="skills" class="mb-20 md:mb-32 scroll-mt-16">
+        <section id="skills" class="mb-20 md:mb-32 scroll-mt-16" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8 text-center md:text-left">Skills & Tools</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light">
+                <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-xl font-semibold text-primary mb-4">Technical Skills</h3>
                     <ul class="space-y-3 text-secondary">
                         <li class="flex items-center"><i class="fas fa-solar-panel w-5 text-center mr-3 text-accent1 flex-shrink-0"></i> PVsyst</li>
@@ -258,10 +279,10 @@
                     </ul>
                 </div>
 
-                <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light">
+                <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="150">
                     <h3 class="text-xl font-semibold text-primary mb-4">Soft Skills</h3>
                      <ul class="space-y-3 text-secondary">
-                         <li class="flex items-center"><i class="fas fa-users w-5 text-center mr-3 text-accent1 flex-shrink-0"></i> Team Leadership</li>
+                        <li class="flex items-center"><i class="fas fa-users w-5 text-center mr-3 text-accent1 flex-shrink-0"></i> Team Leadership</li>
                         <li class="flex items-center"><i class="fas fa-sitemap w-5 text-center mr-3 text-accent1 flex-shrink-0"></i> Project Coordination</li>
                         <li class="flex items-center"><i class="fas fa-lightbulb w-5 text-center mr-3 text-accent1 flex-shrink-0"></i> Problem-Solving</li>
                         <li class="flex items-center"><i class="fas fa-comments w-5 text-center mr-3 text-accent1 flex-shrink-0"></i> Communication (Technical & Non-technical)</li>
@@ -278,22 +299,22 @@
             </div>
         </section>
 
-        <section id="projects" class="mb-20 md:mb-32 scroll-mt-16">
+        <section id="projects" class="mb-20 md:mb-32 scroll-mt-16" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8 text-center md:text-left">Key Projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-card p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border-light">
+                <div class="bg-card p-6 rounded-lg shadow-lg hover:shadow-2xl transform transition-all duration-300 ease-in-out hover:scale-105 border border-border-light" data-aos="fade-up" data-aos-delay="100">
                      <img src="https://placehold.co/600x400/f8fafc/1f2937?text=Project+1+Visual" alt="Project 1 Visual" class="rounded mb-4 w-full h-40 object-cover border border-border-light">
                     <h3 class="text-lg font-semibold text-primary mb-2">100MW Utility-Scale Solar Plant Design</h3>
                     <p class="text-sm text-secondary">Led the detailed design phase, including layout optimization and energy yield modeling (PVsyst), contributing to a projected high-performance ratio.</p>
                     <p class="text-sm text-accent1 mt-2">Metric: Optimized 30+ PV designs, reducing estimated BOS costs by 15% through efficient layouts.</p>
                 </div>
-                <div class="bg-card p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border-light">
+                <div class="bg-card p-6 rounded-lg shadow-lg hover:shadow-2xl transform transition-all duration-300 ease-in-out hover:scale-105 border border-border-light" data-aos="fade-up" data-aos-delay="150">
                     <img src="https://placehold.co/600x400/f8fafc/1f2937?text=Project+2+Visual" alt="Project 2 Visual" class="rounded mb-4 w-full h-40 object-cover border border-border-light">
                     <h3 class="text-lg font-semibold text-primary mb-2">8760 Energy Simulation Modeling</h3>
                     <p class="text-sm text-secondary">Developed and validated hourly (8760) energy simulation models for multiple C&I rooftop projects, ensuring accurate performance predictions.</p>
                      <p class="text-sm text-accent1 mt-2">Metric: Improved accuracy of yield predictions by ~5% compared to standard models.</p>
                 </div>
-                <div class="bg-card p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border-light">
+                <div class="bg-card p-6 rounded-lg shadow-lg hover:shadow-2xl transform transition-all duration-300 ease-in-out hover:scale-105 border border-border-light" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://placehold.co/600x400/f8fafc/1f2937?text=Project+3+Visual" alt="Project 3 Visual" class="rounded mb-4 w-full h-40 object-cover border border-border-light">
                     <h3 class="text-lg font-semibold text-primary mb-2">Rooftop Solar Portfolio Design (Multiple Sites)</h3>
                     <p class="text-sm text-secondary">Managed the design process for a portfolio of rooftop solar installations across different states, adapting designs to varying site conditions and regulations.</p>
@@ -302,11 +323,11 @@
                 </div>
         </section>
 
-        <section id="education" class="mb-20 md:mb-32 scroll-mt-16">
+        <section id="education" class="mb-20 md:mb-32 scroll-mt-16" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8 text-center md:text-left">Education & Certifications</h2>
             <div class="bg-card p-6 md:p-8 rounded-lg shadow-lg space-y-8 border border-border-light">
 
-                <div>
+                <div data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-2xl font-semibold text-primary mb-6">Education</h3>
                     <div class="space-y-6">
                         <div class="pl-4 border-l-4 border-accent1">
@@ -349,7 +370,7 @@
                     </div>
                 </div>
 
-                <div class="pt-8 border-t border-border-light">
+                <div class="pt-8 border-t border-border-light" data-aos="fade-up" data-aos-delay="150">
                     <h3 class="text-2xl font-semibold text-primary mb-4">Professional Certifications</h3>
                     <ul class="list-disc list-inside space-y-1 text-secondary marker:text-accent1 mt-2 pl-4">
                         <li>Certified PVsyst User</li>
@@ -360,7 +381,7 @@
             </div>
         </section>
 
-        <section id="contact" class="mb-12 scroll-mt-16">
+        <section id="contact" class="mb-12 scroll-mt-16" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8 text-center">Get In Touch</h2>
             <div class="max-w-2xl mx-auto bg-card p-6 md:p-8 rounded-lg shadow-lg text-center border border-border-light">
                 <p class="text-secondary mb-6">
@@ -406,7 +427,15 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
+        // Initialize AOS
+        AOS.init({
+          duration: 800, // values from 0 to 3000, with step 50ms
+          once: true, // whether animation should happen only once - while scrolling down
+        });
+
         // Mobile Menu Toggle
         const menuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
