@@ -101,6 +101,11 @@
             transform-origin: left;
         }
 
+        /* Style for form status message */
+        #form-status {
+            transition: opacity 0.5s ease-in-out;
+        }
+
     </style>
 </head>
 <body class="bg-base text-primary font-sans antialiased">
@@ -123,6 +128,7 @@
 
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-secondary focus:outline-none">
+                    {/* */}
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
@@ -214,7 +220,7 @@
                         <li>Conduct due diligence and risk assessment for potential investments and financing deals.</li>
                         <li>Collaborate with internal teams and external stakeholders (lenders, investors) to structure financing.</li>
                         <li>Prepare investment memorandums and presentations for senior management and investment committees.</li>
-                    </ul>
+                        </ul>
                 </div>
 
                 <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="150">
@@ -226,7 +232,7 @@
                         <li>Developed financial models and performed data analysis to support client engagements and recommendations.</li>
                         <li>Engaged with stakeholders across various levels to gather requirements and present findings.</li>
                         <li>Contributed to business solution design and process improvement initiatives for clients.</li>
-                    </ul>
+                         </ul>
                 </div>
 
                  <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="200">
@@ -238,7 +244,7 @@
                         <li>Utilized SQL and other tools for data extraction, manipulation, and analysis to generate insights.</li>
                         <li>Developed and maintained Management Information Systems (MIS) reports and dashboards.</li>
                         <li>Collaborated with business units to understand requirements and provide financial planning support.</li>
-                    </ul>
+                        </ul>
                 </div>
 
                 <div class="bg-card p-6 rounded-lg shadow-lg border border-border-light" data-aos="fade-up" data-aos-delay="250">
@@ -359,7 +365,7 @@
                             <div class="mt-3 bg-accent2/10 p-3 rounded-md border border-accent2/30">
                                 <p class="text-sm font-semibold text-accent2"><i class="fas fa-medal mr-2"></i>Gold Medal</p>
                                 <p class="text-sm text-secondary">Best All Round Performance in MBA during 2018-20.</p>
-                                
+
                             </div>
                             <div class="mt-3 bg-accent2/10 p-3 rounded-md border border-accent2/30">
                                 <p class="text-sm font-semibold text-accent2"><i class="fas fa-medal mr-2"></i>Certificate of Excellence</p>
@@ -410,25 +416,28 @@
                 <p class="text-secondary mb-6">
                     Interested in collaborating or discussing renewable energy solutions? Feel free to reach out!
                 </p>
-                <form id="contact-form" class="space-y-4">
+                <form id="contact-form"
+                      method="POST"
+                      action="https://docs.google.com/forms/d/e/1FAIpQLScEcn3L9X1Mbv3Ksiy3Gp7J_oKJ_qV6S7AgNdUxICBOAN1wnA/formResponse"
+                      class="space-y-4">
                     <div>
                         <label for="name" class="sr-only">Name</label>
-                        <input type="text" name="name" id="name" placeholder="Your Name" required class="w-full px-4 py-2 rounded bg-white border border-border-light focus:outline-none focus:ring-2 focus:ring-accent1 focus:border-transparent placeholder-gray-400 text-primary">
+                        <input type="text" name="entry.1543310263" id="name" placeholder="Your Name" required class="w-full px-4 py-2 rounded bg-white border border-border-light focus:outline-none focus:ring-2 focus:ring-accent1 focus:border-transparent placeholder-gray-400 text-primary">
                     </div>
                     <div>
                         <label for="email" class="sr-only">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Your Email" required class="w-full px-4 py-2 rounded bg-white border border-border-light focus:outline-none focus:ring-2 focus:ring-accent1 focus:border-transparent placeholder-gray-400 text-primary">
+                        <input type="email" name="entry.647542139" id="email" placeholder="Your Email" required class="w-full px-4 py-2 rounded bg-white border border-border-light focus:outline-none focus:ring-2 focus:ring-accent1 focus:border-transparent placeholder-gray-400 text-primary">
                     </div>
                     <div>
                         <label for="message" class="sr-only">Message</label>
-                        <textarea name="message" id="message" rows="4" placeholder="Your Message" required class="w-full px-4 py-2 rounded bg-white border border-border-light focus:outline-none focus:ring-2 focus:ring-accent1 focus:border-transparent placeholder-gray-400 text-primary"></textarea>
+                        <textarea name="entry.1078837442" id="message" rows="4" placeholder="Your Message" required class="w-full px-4 py-2 rounded bg-white border border-border-light focus:outline-none focus:ring-2 focus:ring-accent1 focus:border-transparent placeholder-gray-400 text-primary"></textarea>
                     </div>
                     <div>
-                        <button type="submit" class="bg-accent1 text-white hover:bg-opacity-80 font-semibold py-2 px-6 rounded shadow-md w-full md:w-auto">
+                        <button type="submit" id="submit-button" class="bg-accent1 text-white hover:bg-opacity-80 font-semibold py-2 px-6 rounded shadow-md w-full md:w-auto disabled:opacity-50">
                             Send Message
                         </button>
                     </div>
-                </form>
+                     <div id="form-status" class="mt-4 text-sm h-6"></div> </form>
 
                 <div class="mt-8 pt-6 border-t border-border-light">
                     <p class="text-secondary mb-4">Connect with me:</p>
@@ -478,32 +487,51 @@
         // Set Current Year in Footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Contact Form Mailto Logic
+        // --- Google Form Submission Logic ---
         const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        const submitButton = document.getElementById('submit-button');
+
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
-            // --- Updated with your actual email address ---
-            const recipientEmail = 'pgp09manohrg@iimrohtak.ac.in';
-            // --- Updated with your actual email address ---
+            // Disable button and show loading state (optional)
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            formStatus.textContent = ''; // Clear previous status
 
+            const formData = new FormData(contactForm);
+            const actionUrl = contactForm.action;
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            // Construct the subject
-            const subject = `Contact Form Submission from ${name}`;
-
-            // Construct the body
-            const body = `You received a new message from your portfolio contact form:\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-
-            // Construct the mailto link
-            // Use encodeURIComponent to handle special characters in subject and body
-            const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            // Open the user's default email client
-            window.location.href = mailtoLink;
+            fetch(actionUrl, {
+                method: 'POST',
+                body: new URLSearchParams(formData), // Send as URL-encoded data
+                mode: 'no-cors' // Important for submitting to Google Forms cross-origin
+            })
+            .then(response => {
+                 // 'no-cors' mode means we can't read the actual response status,
+                 // but the request was likely sent if no network error occurred.
+                console.log('Form submitted (no-cors mode). Assuming success.');
+                formStatus.textContent = 'Thank you for your message!';
+                formStatus.classList.remove('text-red-600');
+                formStatus.classList.add('text-accent1'); // Use accent color for success
+                contactForm.reset(); // Clear the form fields
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+                formStatus.textContent = 'Oops! There was an error sending your message.';
+                formStatus.classList.remove('text-accent1');
+                formStatus.classList.add('text-red-600'); // Use a red color for errors
+            })
+            .finally(() => {
+                 // Re-enable button after attempt
+                 submitButton.disabled = false;
+                 submitButton.textContent = 'Send Message';
+                 // Optionally hide the status message after a delay
+                 setTimeout(() => {
+                     formStatus.textContent = '';
+                 }, 5000); // Hide after 5 seconds
+            });
         });
 
     </script>
